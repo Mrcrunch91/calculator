@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>com.mrcrunch91</groupId>
 	<artifactId>calculator</artifactId>
+	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>calculator</name>
 	<description>Demo project for Spring Boot</description>
