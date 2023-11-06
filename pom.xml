@@ -32,11 +32,11 @@
 	    <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>		
-	</dependencies>
+        </dependency>	
 
+	</dependencies>	
 	<build>
-		<plugins>
+		<plugins>		
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -49,8 +49,8 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
-            </plugin>
-		</plugins>
+            </plugin>			
+	    </plugins>
 	</build>
 
 </project>

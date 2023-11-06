@@ -12,5 +12,4 @@ public class HelloController {
     String hello() {
         return "Hello NateDogg, Spring Boot Here!";
     }
-    
 }
