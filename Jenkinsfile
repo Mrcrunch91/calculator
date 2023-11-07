@@ -25,8 +25,8 @@ pipeline {
             steps{
                 sh "mvn validate"
                 publishHTML (target: [
-                    reportDir: 'target/site/jacoco/com.mrcrunch91.calculator/'
-                    reportFiles: 'main.html'
+                    reportDir: 'target/site/jacoco/com.mrcrunch91.calculator/',
+                    reportFiles: 'main.html',
                     reportName: "Checkstyle Report"
                 ])
             }
