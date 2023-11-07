@@ -11,7 +11,7 @@ pipeline {
                 sh "mvn test"
             }
         }
-        stage("Code coverage"){
+        stage("Code Coverage"){
             steps{
                 publishHTML (target: [
                     reportDir: 'target/site/jacoco/com.mrcrunch91.calculator/',
@@ -21,5 +21,15 @@ pipeline {
             }
 
     }
+        stage("Static Code Analysis"){
+            steps{
+                sh "mvn validate"
+                publishHTML (target: [
+                    reportDir: 'target/site/jacoco/com.mrcrunch91.calculator/'
+                    reportFiles: 'main.html'
+                    reportName: "Checkstyle Report"
+                ])
+            }
+        }
   }
 }
