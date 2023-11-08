@@ -1,5 +1,8 @@
 pipeline {
-    agent  {label 'java11-docker-slave'}
+    agent  { label 'java11-docker-slave'}
+    triggers {
+        pollSCM('* * * * *')
+    }
     stages{
         stage("Compile"){
             steps{
@@ -20,7 +23,7 @@ pipeline {
                 ])                
             }
 
-    }
+        }
         stage("Static Code Analysis"){
             steps{
                 sh "mvn validate"
@@ -31,5 +34,5 @@ pipeline {
                 ])
             }
         }
-  }
+    }
 }
