@@ -4,9 +4,9 @@ pipeline {
         pollSCM('* * * * *')
     }
     stages{
-        stage("Compile"){
+        stage("Package"){
             steps{
-                sh "mvn compile;"
+                sh "mvn compile package;"
             }
         }
         stage("Test"){
@@ -34,5 +34,6 @@ pipeline {
                 ])
             }
         }
+        stage(())
     }
 }
