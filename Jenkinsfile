@@ -9,6 +9,11 @@ pipeline {
                 sh "mvn compile package;"
             }
         }
+        stage("Docker Build"){
+            steps {
+                sh "docker build -t mrcrunch/calculator ."
+            }
+        }
         stage("Test"){
             steps{
                 sh "mvn test"
@@ -34,6 +39,5 @@ pipeline {
                 ])
             }
         }
-        stage(())
     }
 }
