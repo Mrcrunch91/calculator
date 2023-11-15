@@ -2,7 +2,7 @@ pipeline {
     agent  {
         docker { 
             label 'Docker-Java11-Slave'
-            image 'mrcrunch/jenkins-slave-with-java11:v1.3'
+            image 'mrcrunch/jenkins-slave-with-java11:v1.5'
             args '-v /var/run/docker.sock:/var/run/docker.sock'        
         }
     }
