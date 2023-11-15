@@ -11,7 +11,7 @@ pipeline {
     stages{
         stage("Package"){
             steps{
-                sh "mvn compile package;"
+                sh "mvn compile package;sleep 1m"
             }
         }
         stage("Docker Build"){
