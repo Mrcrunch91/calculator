@@ -47,7 +47,7 @@ pipeline {
         }
         stage("Docker App Push"){
             steps {
-                sh 'apt remove golang-docker-credential-helpers'
+                sh 'apt -yq remove golang-docker-credential-helpers'
                 sh 'docker login --username mrcrunch --password LebronJames#1'
                 sh "docker push mrcrunch/calculator:latest"
             }
