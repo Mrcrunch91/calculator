@@ -47,6 +47,7 @@ pipeline {
         }
         stage("Docker App Push"){
             steps {
+                sh 'docker login --username mrcrunch --password LebronJames#1'
                 sh "docker push mrcrunch/calculator:latest"
             }
         }
