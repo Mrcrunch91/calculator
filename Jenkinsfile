@@ -41,7 +41,7 @@ pipeline {
                 publishHTML (target: [
                     reportDir: 'target/site/jacoco/com.mrcrunch91.calculator/',
                     reportFiles: 'main.html',
-                    reportName: "Checkstyle Report"
+                    reportName: 'Checkstyle Report'
                 ])
             }
         }
@@ -49,19 +49,18 @@ pipeline {
             steps {
                 sh 'apt -yq remove golang-docker-credential-helpers'
                 sh 'docker login --username mrcrunch --password LebronJames#1'
-                sh "docker push mrcrunch/calculator:latest"
+                sh 'docker push mrcrunch/calculator:latest'
             }
         }
         stage ("Deploy to Staging"){
             steps{
-                sh "docker run -d --rm -p 8765:8080 --name calculator mrcrunch/calculator:latest"
+                sh 'docker run -d --rm -p 8765:8080 --name calculator mrcrunch/calculator:latest'
             }
         }
         stage("Acceptance Test"){
             steps{
-                sh "netstat -ln | grep 8765"
-                sleep 60
-                sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
+                sleep 300
+                sh 'chmod +x acceptance_test.sh && ./acceptance_test.sh'
             }
         }
     } 
