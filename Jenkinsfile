@@ -45,5 +45,10 @@ pipeline {
                 ])
             }
         }
+        stage("Docker App Push"){
+            steps {
+                sh "docker push mrcrunch/calculator:latest"
+            }
+        }
     }
 }
