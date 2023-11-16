@@ -59,6 +59,7 @@ pipeline {
         }
         stage("Acceptance Test"){
             steps{
+                sh "netstat -ln | grep 8765"
                 sleep 60
                 sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
             }
