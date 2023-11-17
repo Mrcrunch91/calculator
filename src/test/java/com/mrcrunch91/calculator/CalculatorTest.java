@@ -8,21 +8,30 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.junit.Assert.assertEquals;
+
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class HelloControllerTests {
+class CalculatorTest {
 
 	@Autowired
 	private MockMvc mvc;
+
+	private Calculator calculator  = new Calculator();
 	
-	@Test
+/* 	@Test
 	void welcome_ok() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(content().string(equalTo("Hello NateDogg, Spring Boot Here!")));
+	} */
+
+	@Test
+	public void testSum(){
+		assertEquals(5, calculator.sum(2,3));
 	}
 }
