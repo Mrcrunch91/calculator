@@ -1,38 +1,39 @@
 pipeline {
-    agent  { label 'java11-docker-slave'}
+    
+    agent any
+    
     triggers {
         pollSCM('* * * * *')
     }
+    
     stages{
-        stage("Compile"){
-            steps{
-                sh "mvn compile;"
-            }
-        }
-        stage("Test"){
-            steps{
-                sh "mvn test"
-            }
-        }
-        stage("Code Coverage"){
-            steps{
-                publishHTML (target: [
-                    reportDir: 'target/site/jacoco/com.mrcrunch91.calculator/',
-                    reportFiles: 'index.html',
-                    reportName: "JaCoCo Report"
-                ])                
-            }
 
-        }
-        stage("Static Code Analysis"){
-            steps{
-                sh "mvn validate"
-                publishHTML (target: [
-                    reportDir: 'target/site/jacoco/com.mrcrunch91.calculator/',
-                    reportFiles: 'main.html',
-                    reportName: "Checkstyle Report"
-                ])
+        stage("Docker Build"){
+            steps {
+                sh "docker build -t mrcrunch/book-store:v1.1 ."
             }
+        }
+        stage ("Docker-in-Docker Run"){
+            steps{
+                sh 'docker run -d --rm -p 81:81 --name bookstore mrcrunch/book-store:v1.1'
+            }
+        }        
+        stage("Acceptance Test"){
+            steps{
+                sh "docker exec bookstore behave"
+            }
+        }
+        stage("Docker App Push"){
+            steps {
+                sh 'apt -yq remove golang-docker-credential-helpers'
+                sh 'docker login --username mrcrunch --password LebronJames#1'
+                sh 'docker push mrcrunch/book-store:v1.1'
+            }
+        }
+    } 
+    post {
+        always{
+            sh "docker stop bookstore"
         }
     }
 }

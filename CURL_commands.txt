@@ -1,0 +1,17 @@
+GET:
+
+    Browser:
+              http://localhost:81/book?<isbn>
+                
+              Should return "SUCCESS"
+    
+    CLI:
+        curl "http://localhost:81/book?title=value&author=value&isbn=value"
+
+POST:
+
+    Browser:
+              http://localhost:81/book/title=value&author=value&isbn=value
+    
+    CLI:
+        curl -d "title=testoftest&author=whocaresmyboy&isbn=9876543210" -X POST http://localhost:81/book
