@@ -10,6 +10,7 @@ pipeline {
 
         stage("Docker Build"){
             steps {
+                sh "chmod a+wrx acceptance_test.sh"
                 sh "docker build -t mrcrunch/book-store:v1.1 ."
             }
         }
@@ -20,7 +21,6 @@ pipeline {
         }        
         stage("Acceptance Test"){
             steps{
-                sh "chmod a+wrx /home/jenkins/acceptance_test.sh"
                 sh "docker exec bookstore /home/jenkins/acceptance_test.sh"
             }
         }
