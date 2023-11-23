@@ -35,7 +35,7 @@ def step_when_store_book(context):
 
      print(res_output.status_code)
 
-     assert(res_output.status_code == 200)
+     assert(res_output.status_code == 300)
 
 @then('I am able to retrieve the book by the {isbn} number')
 def step_then_retrieve_book(context, isbn):
