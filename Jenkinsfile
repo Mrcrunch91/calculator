@@ -20,7 +20,8 @@ pipeline {
         }        
         stage("Acceptance Test"){
             steps{
-                sh "docker exec bookstore behave"
+                sh "chmod u+wrx acceptance_test.sh"
+                sh "docker exec bookstore /home/jenkins/acceptance_test.sh"
             }
         }
         stage("Docker App Push"){
